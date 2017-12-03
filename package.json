@@ -1,0 +1,18 @@
+{
+    "Defines": [
+    {
+        "Name": "UserMessageSend",
+        "Params": [
+            "UserID",
+            "Message"
+        ],
+        "Content": "{pm:{0}}{1}"
+    },
+    {
+        "Name": "ActiveMessageSend",
+        "Params": [
+            "Message"
+        ],
+        "Content": "{pm}{0}"
+    }]
+}
