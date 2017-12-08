@@ -88,3 +88,18 @@ String.prototype.embedThis = function() {
 	}
 	return emb;
 }
+function search(arr, target) {
+    if (!arr) {
+        return "Error : Missing First Argument";
+    }
+    else if (!target) {
+        return "Error : Missin Second Argument";
+    }
+    else if (Array.isArray(arr)) {
+        if (arr.lastIndexOf(target) !== -1) {
+            return 'true';
+        } else {
+            return 'false';
+        }
+    }
+}
