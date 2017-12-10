@@ -223,6 +223,7 @@ function unBitwise(count) {
     if (typeof count !== 'number') {
         return "Please insert a number!";
     } else {
+        var perms = "";
         if(count > 0x40000000) {
             count -= 0x40000000;
             perms += "MANAGE_EMOJIS";
