@@ -224,120 +224,120 @@ function unBitwise(count) {
         return "Please insert a number!";
     } else {
         var perms = "";
-        if(count > 0x40000000) {
+        if(count >= 0x40000000) {
             count -= 0x40000000;
             perms += "MANAGE_EMOJIS";
         }
-        if(count > 0x20000000) {
+        if(count >= 0x20000000) {
             count -= 0x20000000;
             perms += "MANAGE_WEBHOOKS";
         }
-        if(count > 0x10000000) {
+        if(count >= 0x10000000) {
             count -= 0x10000000;
             perms += "MANAGE_ROLES";
         }
-        if(count > 0x08000000) {
+        if(count >= 0x08000000) {
             count -= 0x08000000;
             perms += "MANAGE_ROLES";
         }
-        if(count > 0x04000000) {
+        if(count >= 0x04000000) {
             count -= 0x04000000;
             perms += "CHANGE_NICKNAME";
         }
-        if(count > 0x02000000) {
+        if(count >= 0x02000000) {
             count -= 0x02000000;
             perms += "USE_VAD";
         }
-        if(count > 0x01000000) {
+        if(count >= 0x01000000) {
             count -= 0x01000000;
             perms += "MOVE_MEMBERS";
         }
-        if(count > 0x00800000) {
+        if(count >= 0x00800000) {
             count -= 0x00800000;
             perms += "DEAFEN_MEMBERS";
         }
-        if(count > 0x00400000) {
+        if(count >= 0x00400000) {
             count -= 0x00400000;
             perms += "MUTE_MEMBERS";
         }
-        if(count > 0x00200000) {
+        if(count >= 0x00200000) {
             count -= 0x00200000;
             perms += "SPEAK";
         }
-        if(count > 0x00100000) {
+        if(count >= 0x00100000) {
             count -= 0x00100000;
             perms += "CONNECT";
         }
-        if(count > 0x00040000) {
+        if(count >= 0x00040000) {
             count -= 0x00040000;
             perms += "USE_EXTERNAL_EMOJIS";
         }
-        if(count > 0x00020000) {
+        if(count >= 0x00020000) {
             count -= 0x00020000;
             perms += "MENTION_EVERYONE";
         }
-        if(count > 0x00010000) {
+        if(count >= 0x00010000) {
             count -= 0x00010000;
             perms += "READ_MESSAGE_HISTORY";
         }
-        if(count > 0x00008000) {
+        if(count >= 0x00008000) {
             count -= 0x00008000;
             perms += "ATTACH_FILES";
         }
-        if(count > 0x00004000) {
+        if(count >= 0x00004000) {
             count -= 0x00004000;
             perms += "EMBED_LINKS";
         }
-        if(count > 0x00002000) {
+        if(count >= 0x00002000) {
             count -= 0x00002000;
             perms += "MANAGE_MESSAGES";
         }
-        if(count > 0x00001000) {
+        if(count >= 0x00001000) {
             count -= 0x00001000;
             perms += "SEND_TTS_MESSAGES";
         }
-        if(count > 0x00000800) {
+        if(count >= 0x00000800) {
             count -= 0x00000800;
             perms += "SEND_MESSAGES";
         }
-        if(count > 0x00000400) {
+        if(count >= 0x00000400) {
             count -= 0x00000400;
             perms += "VIEW_CHANNEL";
         }
-        if(count > 0x00000080) {
+        if(count >= 0x00000080) {
             count -= 0x00000080;
             perms += "VIEW_AUDIT_LOG";
         }
-        if(count > 0x00000040) {
+        if(count >= 0x00000040) {
             count -= 0x00000040;
             perms += "ADD_REACTIONS";
         }
-        if(count > 0x00000020) {
+        if(count >= 0x00000020) {
             count -= 0x00000020;
             perms += "MANAGE_GUILD";
         }
-        if(count > 0x00000010) {
+        if(count >= 0x00000010) {
             count -= 0x00000010;
             perms += "MANAGE_CHANNELS";
         }
-        if(count > 0x00000008) {
+        if(count >= 0x00000008) {
             count -= 0x00000008;
             perms += "ADMINISTRATOR";
         }
-        if(count > 0x00000004) {
+        if(count >= 0x00000004) {
             count -= 0x00000004;
             perms += "BAN_MEMBERS";
         }
-        if(count > 0x00000002) {
+        if(count >= 0x00000002) {
             count -= 0x00000002;
             perms += "KICK_MEMBERS";
         }
-        if(count > 0x00000001) {
+        if(count >= 0x00000001) {
             count -= 0x00000001;
             perms += "CREATE_INSTANT_INVITE";
         }
         if (count !== 0) {
-            return "Error : Remainder of "+count;
+            return "Error : Remainder of "+count+"\nCached : `\``\n"+perms+"\n`\``";
         } else {
             return perms;
         }
