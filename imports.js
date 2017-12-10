@@ -346,45 +346,67 @@ function unBitwise(count) {
 
 
 function getUser(id) {
-  var text = "";
-  for (i = 0; i < ServerMembers.length; i++) {
-      if (ServerMembers[i].User.ID === id||ServerMembers[i].User.Username === id||ServerMembers[i].User.Discriminator === id) {
-        text += JSON.stringify(ServerMembers[i])+"\n\n";
-      }
-  }
-  if (text !== "") {
-    return text;
-  } else {
-    return "Internal Error : `"+id+"` Not found in guild";
-  }
+    if (id.toLowerCase() === '$$collect') {
+        var text = "";
+        for (i = 0; i < ServerMembers.length; i++) {
+            text += ServerMembers[i].User.Username+",\t";
+        }
+        return text;
+    } else {
+        var text = "";
+        for (i = 0; i < ServerMembers.length; i++) {
+            if (ServerMembers[i].User.ID === id||ServerMembers[i].User.Username === id||ServerMembers[i].User.Discriminator === id) {
+                text += JSON.stringify(ServerMembers[i])+"\n\n";
+            }
+        }
+        if (text !== "") {
+            return text;
+        } else {
+            return "Internal Error : `"+id+"` Not found in guild";
+        }
+    }
 }
-
 
 function getChan(id) {
-  var text = "";
-  for (i = 0; i < ServerChannels.length; i++) {
-      if (ServerChannels[i].ID === id||ServerChannels[i].Name === id) {
-        text += JSON.stringify(ServerChannels[i])+"\n\n";
-      }
-  }
-  if (text !== "") {
-    return text;
-  } else {
-    return "Internal Error : `"+id+"` Not found in guild";
-  }
+    if (id.toLowerCase() === '$$collect') {
+        var text = "";
+        for (i = 0; i < ServerChannels.length; i++) {
+            text += ServerChannels[i].Name+",\t";
+        }
+        return text;
+    } else {
+        var text = "";
+        for (i = 0; i < ServerChannels.length; i++) {
+            if (ServerChannels[i].ID === id||ServerChannels[i].Name === id) {
+            text += JSON.stringify(ServerChannels[i])+"\n\n";
+            }
+        }
+        if (text !== "") {
+            return text;
+        } else {
+            return "Internal Error : `"+id+"` Not found in guild";
+        }
+    }
 }
 
-
 function getRole(id) {
-  var text = "";
-  for (i = 0; i < ServerRoles.length; i++) {
-      if (ServerRoles[i].ID === id||ServerRoles[i].Name === id) {
-        text += JSON.stringify(ServerRoles[i])+"\n\n";
-      }
-  }
-  if (text !== "") {
-    return text;
-  } else {
-    return "Internal Error : `"+id+"` Not found in guild";
-  }
+    if (id.toLowerCase() === '$$collect') {
+        var text = "";
+        for (i = 0; i < ServerRoles.length; i++) {
+            text += ServerRoles[i].Name+",\t";
+        }
+        return text;
+    } else {
+        var text = "";
+        for (i = 0; i < ServerRoles.length; i++) {
+            if (ServerRoles[i].ID === id||ServerRoles[i].Name === id) {
+                text += JSON.stringify(ServerRoles[i])+"\n\n";
+            }
+        }
+        if (text !== "") {
+            return text;
+        } else {
+            return "Internal Error : `"+id+"` Not found in guild";
+        }
+    }
 }
