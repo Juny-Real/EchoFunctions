@@ -1,3 +1,20 @@
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
+}
+
+
+
 String.prototype.embedThis = function() {
 	var emb = {};
 	var t = "";
@@ -111,65 +128,91 @@ function search(arr, target) {
 
 
 
-function bitwise(data) {
-    var perms = {
-        "CREATE_INSTANT_INVITE":0x00000001,0x00000001:1,
-        "KICK_MEMBERS":0x00000002,0x00000002:2,
-        "BAN_MEMBERS":0x00000004,0x00000004:4,
-        "ADMINISTRATOR":0x00000008,0x00000008:8,
-        "MANAGE_CHANNELS":0x00000010,0x00000010:16,
-        "MANAGE_GUILD":0x00000020,0x00000020:32,
-        "ADD_REACTIONS":0x00000040,0x00000040:64,
-        "VIEW_AUDIT_LOG":0x00000080,0x00000080:128,
-        "VIEW_CHANNEL":0x00000400,0x00000400:1024,
-        "SEND_MESSAGES":0x00000800,0x00000800:2048,
-        "SEND_TTS_MESSAGES":0x00001000,0x00001000:4096,
-        "MANAGE_MESSAGES":0x00002000,0x00002000:8192,
-        "EMBED_LINKS":0x00004000,0x00004000:16384,
-        "ATTACH_FILES":0x00008000,0x00008000:32768,
-        "READ_MESSAGE_HISTORY":0x00010000,0x00010000:65536,
-        "MENTION_EVERYONE":0x00020000,0x00020000:131072,
-        "USE_EXTERNAL_EMOJIS":0x00040000,0x00040000:262144,
-        "CONNECT":0x00100000,0x00100000:1048576,
-        "SPEAK":0x00200000,0x00200000:2097152,
-        "MUTE_MEMBERS":0x00400000,0x00400000:4194304,
-        "DEAFEN_MEMBERS":0x00800000,0x00800000:8388608,
-        "MOVE_MEMBERS":0x01000000,0x01000000:16777216,
-        "USE_VAD":0x02000000,0x02000000:33554432,
-        "CHANGE_NICKNAME":0x04000000,0x04000000:67108864,
-        "MANAGE_NICKNAMES":0x08000000,0x08000000:134217728,
-        "MANAGE_ROLES":0x10000000,0x10000000:268435456,
-        "MANAGE_WEBHOOKS":0x20000000,0x20000000:536870912,
-        "MANAGE_EMOJIS":0x40000000,0x40000000:1073741824
-    };
-    var res = data.replace(/, /gi, ' + ');
-    var res = res.replace(/CREATE_INSTANT_INVITE/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/KICK_MEMBERS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/BAN_MEMBERS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/ADMINISTRATOR/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_CHANNELS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_GUILD/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/ADD_REACTIONS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/VIEW_AUDIT_LOG/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/VIEW_CHANNEL/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/SEND_MESSAGES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/SEND_TTS_MESSAGES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_MESSAGES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/EMBED_LINKS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/ATTACH_FILES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/READ_MESSAGE_HISTORY/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MENTION_EVERYONE/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/USE_EXTERNAL_EMOJIS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/CONNECT/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/SPEAK/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MUTE_MEMBERS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/DEAFEN_MEMBERS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MOVE_MEMBERS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/USE_VAD/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/CHANGE_NICKNAME/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_NICKNAMES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_ROLES/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_WEBHOOKS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    var res = res.replace(/MANAGE_EMOJIS/gi, function myFunction(x){var data = x.toUpperCase(); return perms.data});
-    return res;
+function makeBitwise(data) {
+	var count = 0;
+	if (data.includes("CREATE_INSTANT_INVITE")) {
+	  count += 0x00000001;
+	}
+	if(data.includes("KICK_MEMBERS")) {
+	  count += 0x00000002;
+	}
+	if(data.includes("BAN_MEMBERS")) {
+	  count += 0x00000004;
+	}
+	if(data.includes("ADMINISTRATOR")) {
+	  count += 0x00000008;
+	}
+	if(data.includes("MANAGE_CHANNELS")) {
+	  count += 0x00000010;
+	}
+	if(data.includes("MANAGE_GUILD")) {
+	  count += 0x00000020;
+	}
+	if(data.includes("ADD_REACTIONS")) {
+	  count += 0x00000040;
+	}
+	if(data.includes("VIEW_AUDIT_LOG")) {
+	    count += 0x00000080;
+	}
+	if(data.includes("VIEW_CHANNEL")) {
+	    count += 0x00000400;
+	}
+	if(data.includes("SEND_MESSAGES")) {
+	    count += 0x00000800;
+	}
+	if(data.includes("SEND_TTS_MESSAGES")) {
+	    count += 0x00001000;
+	}
+	if(data.includes("MANAGE_MESSAGES")) {
+	    count += 0x00002000;
+	}
+	if(data.includes("EMBED_LINKS")) {
+	    count += 0x00004000;
+	}
+	if(data.includes("ATTACH_FILES")) {
+	    count += 0x00008000;
+	}
+	if(data.includes("READ_MESSAGE_HISTORY")) {
+	    count += 0x00010000;
+	}
+	if(data.includes("MENTION_EVERYONE")) {
+	    count += 0x00020000;
+	}
+	if(data.includes("USE_EXTERNAL_EMOJIS")) {
+	    count += 0x00040000;
+	}
+	if(data.includes("CONNECT")) {
+	    count += 0x00100000;
+	}
+	if(data.includes("SPEAK")) {
+	    count += 0x00200000;
+	}
+	if(data.includes("MUTE_MEMBERS")) {
+	    count += 0x00400000;
+	}
+	if(data.includes("DEAFEN_MEMBERS")) {
+	    count += 0x00800000;
+	}
+	if(data.includes("MOVE_MEMBERS")) {
+	    count += 0x01000000;
+	}
+	if(data.includes("USE_VAD")) {
+	    count += 0x02000000;
+	}
+	if(data.includes("CHANGE_NICKNAME")) {
+	    count += 0x04000000;
+	}
+	if(data.includes("MANAGE_NICKNAMES")) {
+	    count += 0x08000000;
+	}
+	if(data.includes("MANAGE_ROLES")) {
+	    count += 0x10000000;
+	}
+	if(data.includes("MANAGE_WEBHOOKS")) {
+	    count += 0x20000000;
+	}
+	if(data.includes("MANAGE_EMOJIS")) {
+	    count += 0x40000000;
+	}
+	return count;
 }
