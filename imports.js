@@ -55,7 +55,7 @@ String.prototype.embedThis = function() {
 					if(data.length == 3) {
 						field.name = e.split("|")[0];
 						field.value = e.split("|")[1];
-						if(e.split("|")[2].toLowerCase() == "true") {
+						if(e.split("|")[2].toString().toLowerCase() == "true") {
 							field.inline = true;
 						} else {
 							field.inline = false;
