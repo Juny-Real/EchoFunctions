@@ -129,6 +129,7 @@ function search(arr, target) {
 
 
 function makeBitwise(data) {
+    var data = data.toUpperCase();
 	var count = 0;
 	if (data.includes("CREATE_INSTANT_INVITE")) {
 	  count += 0x00000001;
@@ -216,7 +217,6 @@ function makeBitwise(data) {
 	}
 	return count;
 }
-
 
 
 function unBitwise(count) {
@@ -342,4 +342,49 @@ function unBitwise(count) {
             return perms.slice(0, -2);
         }
     }
+}
+
+
+function getUser(id) {
+  var text = "";
+  for (i = 0; i < ServerMembers.length; i++) {
+      if (ServerMembers[i].User.ID === id||ServerMembers[i].User.Username === id||ServerMembers[i].User.Discriminator === id) {
+        text += JSON.stringify(ServerMembers[i])+"\n\n";
+      }
+  }
+  if (text !== "") {
+    return text;
+  } else {
+    return "Internal Error : `"+id+"` Not found in guild";
+  }
+}
+
+
+function getChan(id) {
+  var text = "";
+  for (i = 0; i < ServerChannels.length; i++) {
+      if (ServerChannels[i].ID === id||ServerChannels[i].Name === id) {
+        text += JSON.stringify(ServerChannels[i])+"\n\n";
+      }
+  }
+  if (text !== "") {
+    return text;
+  } else {
+    return "Internal Error : `"+id+"` Not found in guild";
+  }
+}
+
+
+function getRole(id) {
+  var text = "";
+  for (i = 0; i < ServerRoles.length; i++) {
+      if (ServerRoles[i].ID === id||ServerRoles[i].Name === id) {
+        text += JSON.stringify(ServerRoles[i])+"\n\n";
+      }
+  }
+  if (text !== "") {
+    return text;
+  } else {
+    return "Internal Error : `"+id+"` Not found in guild";
+  }
 }
