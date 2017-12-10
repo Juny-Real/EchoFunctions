@@ -339,7 +339,7 @@ function unBitwise(count) {
         if (count !== 0) {
             return "Error : Remainder of "+count+"\nCached : `\``\n"+perms.slice(0, -2)+"\n`\``";
         } else {
-            return perms;
+            return perms.slice(0, -2);
         }
     }
 }
