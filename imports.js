@@ -129,7 +129,10 @@ function search(arr, target) {
 
 
 function makeBitwise(data) {
-    var data = data.toUpperCase();
+    if (typeof data !== 'string') {
+	return "Please use a valid string";
+    } else {
+        var data = data.toUpperCase();
 	var count = 0;
 	if (data.includes("CREATE_INSTANT_INVITE")) {
 	  count += 0x00000001;
@@ -216,6 +219,7 @@ function makeBitwise(data) {
 	    count += 0x40000000;
 	}
 	return count;
+    }
 }
 
 
