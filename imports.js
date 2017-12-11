@@ -223,7 +223,8 @@ function makeBitwise(data) {
 }
 
 
-function unBitwise(count, type = 0) {
+function unBitwise(count, type) {
+    var type = (typeof type !== 'undefined') ?  type : 0;
     var count = parseInt(count);
     if (count.toString() !== 'NaN') {
         if (String(type) == "0") {
@@ -529,6 +530,7 @@ function unBitwise(count, type = 0) {
         return "Error : "+count+"is not a valid number";
     }
 }
+
 
 function getUser(id) {
     if (id.toLowerCase() === '$$collect') {
