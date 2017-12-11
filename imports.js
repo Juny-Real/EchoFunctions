@@ -126,508 +126,6 @@ function search(arr, target) {
 }
 
 
-
-
-function makeBitwise(data, type) {
-    var type = (typeof type !== 'undefined') ?  type : 0;
-    var data = data.toUpperCase();
-    var count = 0;
-    if (type.toString() == "0") {
-        if (data.includes("CREATE_INSTANT_INVITE")||data.includes("0x00000001")) {
-            count += 0x00000001;
-        }
-        if(data.includes("KICK_MEMBERS")||data.includes("0x00000002")) {
-            count += 0x00000002;
-        }
-        if(data.includes("BAN_MEMBERS")||data.includes("0x00000004")) {
-            count += 0x00000004;
-        }
-        if(data.includes("ADMINISTRATOR")||data.includes("0x00000008")) {
-            count += 0x00000008;
-        }
-        if(data.includes("MANAGE_CHANNELS")||data.includes("0x00000010")) {
-            count += 0x00000010;
-        }
-        if(data.includes("MANAGE_GUILD")||data.includes("0x00000020")) {
-            count += 0x00000020;
-        }
-        if(data.includes("ADD_REACTIONS")||data.includes("0x00000040")) {
-            count += 0x00000040;
-        }
-        if(data.includes("VIEW_AUDIT_LOG")||data.includes("0x00000080")) {
-            count += 0x00000080;
-        }
-        if(data.includes("VIEW_CHANNEL")||data.includes("0x00000400")) {
-            count += 0x00000400;
-        }
-        if(data.includes("SEND_MESSAGES")||data.includes("0x00000800")) {
-            count += 0x00000800;
-        }
-        if(data.includes("SEND_TTS_MESSAGES")||data.includes("0x00001000")) {
-            count += 0x00001000;
-        }
-        if(data.includes("MANAGE_MESSAGES")||data.includes("0x00002000")) {
-            count += 0x00002000;
-        }
-        if(data.includes("EMBED_LINKS")||data.includes("0x00004000")) {
-            count += 0x00004000;
-        }
-        if(data.includes("ATTACH_FILES")||data.includes("0x00008000")) {
-            count += 0x00008000;
-        }
-        if(data.includes("READ_MESSAGE_HISTORY")||data.includes("0x00010000")) {
-            count += 0x00010000;
-        }
-        if(data.includes("MENTION_EVERYONE")||data.includes("0x00020000")) {
-            count += 0x00020000;
-        }
-        if(data.includes("USE_EXTERNAL_EMOJIS")||data.includes("0x00040000")) {
-            count += 0x00040000;
-        }
-        if(data.includes("CONNECT")||data.includes("0x00100000")) {
-            count += 0x00100000;
-        }
-        if(data.includes("SPEAK")||data.includes("0x00200000")) {
-            count += 0x00200000;
-        }
-        if(data.includes("MUTE_MEMBERS")||data.includes("0x00400000")) {
-            count += 0x00400000;
-        }
-        if(data.includes("DEAFEN_MEMBERS")||data.includes("0x00800000")) {
-            count += 0x00800000;
-        }
-        if(data.includes("MOVE_MEMBERS")||data.includes("0x01000000")) {
-            count += 0x01000000;
-        }
-        if(data.includes("USE_VAD")||data.includes("0x02000000")) {
-            count += 0x02000000;
-        }
-        if(data.includes("CHANGE_NICKNAME")||data.includes("0x04000000")) {
-            count += 0x04000000;
-        }
-        if(data.includes("MANAGE_NICKNAMES")||data.includes("0x08000000")) {
-            count += 0x08000000;
-        }
-        if(data.includes("MANAGE_ROLES")||data.includes("0x10000000")) {
-            count += 0x10000000;
-        }
-        if(data.includes("MANAGE_WEBHOOKS")||data.includes("0x20000000")) {
-            count += 0x20000000;
-        }
-        if(data.includes("MANAGE_EMOJIS")||data.includes("0x40000000")) {
-            count += 0x40000000;
-        }
-        if (count == 0) {
-            return "Error : No Perms Found";
-        } else {
-            return count.toString();
-        }
-    } else if (type.toString() == "1") {
-        var eq = [];
-        if (data.includes("CREATE_INSTANT_INVITE")||data.includes("0x00000001")) {
-            eq.push(0x00000001);
-        }
-        if(data.includes("KICK_MEMBERS")||data.includes("0x00000002")) {
-            eq.push(0x00000002);
-        }
-        if(data.includes("BAN_MEMBERS")||data.includes("0x00000004")) {
-            eq.push(0x00000004);
-        }
-        if(data.includes("ADMINISTRATOR")||data.includes("0x00000008")) {
-            eq.push(0x00000008);
-        }
-        if(data.includes("MANAGE_CHANNELS")||data.includes("0x00000010")) {
-            eq.push(0x00000010);
-        }
-        if(data.includes("MANAGE_GUILD")||data.includes("0x00000020")) {
-            eq.push(0x00000020);
-        }
-        if(data.includes("ADD_REACTIONS")||data.includes("0x00000040")) {
-            eq.push(0x00000040);
-        }
-        if(data.includes("VIEW_AUDIT_LOG")||data.includes("0x00000080")) {
-            eq.push(0x00000080);
-        }
-        if(data.includes("VIEW_CHANNEL")||data.includes("0x00000400")) {
-            eq.push(0x00000400);
-        }
-        if(data.includes("SEND_MESSAGES")||data.includes("0x00000800")) {
-            eq.push(0x00000800);
-        }
-        if(data.includes("SEND_TTS_MESSAGES")||data.includes("0x00001000")) {
-            eq.push(0x00001000);
-        }
-        if(data.includes("MANAGE_MESSAGES")||data.includes("0x00002000")) {
-            eq.push(0x00002000);
-        }
-        if(data.includes("EMBED_LINKS")||data.includes("0x00004000")) {
-            eq.push(0x00004000);
-        }
-        if(data.includes("ATTACH_FILES")||data.includes("0x00008000")) {
-            eq.push(0x00008000);
-        }
-        if(data.includes("READ_MESSAGE_HISTORY")||data.includes("0x00010000")) {
-            eq.push(0x00010000);
-        }
-        if(data.includes("MENTION_EVERYONE")||data.includes("0x00020000")) {
-            eq.push(0x00020000);
-        }
-        if(data.includes("USE_EXTERNAL_EMOJIS")||data.includes("0x00040000")) {
-            eq.push(0x00040000);
-        }
-        if(data.includes("CONNECT")||data.includes("0x00100000")) {
-            eq.push(0x00100000);
-        }
-        if(data.includes("SPEAK")||data.includes("0x00200000")) {
-            eq.push(0x00200000);
-        }
-        if(data.includes("MUTE_MEMBERS")||data.includes("0x00400000")) {
-            eq.push(0x00400000);
-        }
-        if(data.includes("DEAFEN_MEMBERS")||data.includes("0x00800000")) {
-            eq.push(0x00800000);
-        }
-        if(data.includes("MOVE_MEMBERS")||data.includes("0x01000000")) {
-            eq.push(0x01000000);
-        }
-        if(data.includes("USE_VAD")||data.includes("0x02000000")) {
-            eq.push(0x02000000);
-        }
-        if(data.includes("CHANGE_NICKNAME")||data.includes("0x04000000")) {
-            eq.push(0x04000000);
-        }
-        if(data.includes("MANAGE_NICKNAMES")||data.includes("0x08000000")) {
-            eq.push(0x08000000);
-        }
-        if(data.includes("MANAGE_ROLES")||data.includes("0x10000000")) {
-            eq.push(0x10000000);
-        }
-        if(data.includes("MANAGE_WEBHOOKS")||data.includes("0x20000000")) {
-            eq.push(0x20000000);
-        }
-        if(data.includes("MANAGE_EMOJIS")||data.includes("0x40000000")) {
-            eq.push(0x40000000);
-        }
-        if (eq.length === 0) {
-            return "Error : No Perms Found"
-        } else {
-            return eq.join(" | ");
-        }
-    } else {
-        return "Error : Invalid type";
-    }
-}
-
-
-function unBitwise(count, type) {
-    var type = (typeof type !== 'undefined') ?  type : 0;
-    var count = parseInt(count);
-    if (count.toString() !== 'NaN') {
-        if (String(type) == "0") {
-            var perms = [];
-            var eq = [];
-            if(count >= 0x40000000) {
-                count -= 0x40000000;
-                eq.push("0x40000000");
-                perms.push("MANAGE_EMOJIS");
-            }
-            if(count >= 0x20000000) {
-                count -= 0x20000000;
-                eq.push("0x20000000");
-                perms.push("MANAGE_WEBHOOKS");
-            }
-            if(count >= 0x10000000) {
-                count -= 0x10000000;
-                eq.push("0x10000000");
-                perms.push("MANAGE_ROLES");
-            }
-            if(count >= 0x08000000) {
-                count -= 0x08000000;
-                eq.push("0x08000000");
-                perms.push("MANAGE_ROLES");
-            }
-            if(count >= 0x04000000) {
-                count -= 0x04000000;
-                eq.push("0x04000000");
-                perms.push("CHANGE_NICKNAME");
-            }
-            if(count >= 0x02000000) {
-                count -= 0x02000000;
-                eq.push("0x02000000");
-                perms.push("USE_VAD");
-            }
-            if(count >= 0x01000000) {
-                count -= 0x01000000;
-                eq.push("0x01000000");
-                perms.push("MOVE_MEMBERS");
-            }
-            if(count >= 0x00800000) {
-                count -= 0x00800000;
-                eq.push("0x00800000");
-                perms.push("DEAFEN_MEMBERS");
-            }
-            if(count >= 0x00400000) {
-                count -= 0x00400000;
-                eq.push("0x00400000");
-                perms.push("MUTE_MEMBERS");
-            }
-            if(count >= 0x00200000) {
-                count -= 0x00200000;
-                eq.push("0x00200000");
-                perms.push("SPEAK");
-            }
-            if(count >= 0x00100000) {
-                count -= 0x00100000;
-                eq.push("0x00100000");
-                perms.push("CONNECT");
-            }
-            if(count >= 0x00040000) {
-                count -= 0x00040000;
-                eq.push("0x00040000");
-                perms.push("USE_EXTERNAL_EMOJIS");
-            }
-            if(count >= 0x00020000) {
-                count -= 0x00020000;
-                eq.push("0x00020000");
-                perms.push("MENTION_EVERYONE");
-            }
-            if(count >= 0x00010000) {
-                count -= 0x00010000;
-                eq.push("0x00010000");
-                perms.push("READ_MESSAGE_HISTORY");
-            }
-            if(count >= 0x00008000) {
-                count -= 0x00008000;
-                eq.push("0x00008000");
-                perms.push("ATTACH_FILES");
-            }
-            if(count >= 0x00004000) {
-                count -= 0x00004000;
-                eq.push("0x00004000");
-                perms.push("EMBED_LINKS");
-            }
-            if(count >= 0x00002000) {
-                count -= 0x00002000;
-                eq.push("0x00002000");
-                perms.push("MANAGE_MESSAGES");
-            }
-            if(count >= 0x00001000) {
-                count -= 0x00001000;
-                eq.push("0x00001000");
-                perms.push("SEND_TTS_MESSAGES");
-            }
-            if(count >= 0x00000800) {
-                count -= 0x00000800;
-                eq.push("0x00000800");
-                perms.push("SEND_MESSAGES");
-            }
-            if(count >= 0x00000400) {
-                count -= 0x00000400;
-                eq.push("0x00000400");
-                perms.push("VIEW_CHANNEL");
-            }
-            if(count >= 0x00000080) {
-                count -= 0x00000080;
-                eq.push("0x00000080");
-                perms.push("VIEW_AUDIT_LOG");
-            }
-            if(count >= 0x00000040) {
-                count -= 0x00000040;
-                eq.push("0x00000040");
-                perms.push("ADD_REACTIONS");
-            }
-            if(count >= 0x00000020) {
-                count -= 0x00000020;
-                eq.push("0x00000020");
-                perms.push("MANAGE_GUILD");
-            }
-            if(count >= 0x00000010) {
-                count -= 0x00000010;
-                eq.push("0x00000010");
-                perms.push("MANAGE_CHANNELS");
-            }
-            if(count >= 0x00000008) {
-                count -= 0x00000008;
-                eq.push("0x00000008");
-                perms.push("ADMINISTRATOR");
-            }
-            if(count >= 0x00000004) {
-                count -= 0x00000004;
-                eq.push("0x00000004");
-                perms.push("BAN_MEMBERS");
-            }
-            if(count >= 0x00000002) {
-                count -= 0x00000002;
-                eq.push("0x00000002");
-                perms.push("KICK_MEMBERS");
-            }
-            if(count >= 0x00000001) {
-                count -= 0x00000001;
-                eq.push("0x00000001");
-                perms.push("CREATE_INSTANT_INVITE");
-            }
-            if (count !== 0) {
-                return "Error : Remainder of "+String(count)+"\nCached : `\``\n"+perms.join(", ")+"\n`\``";
-            } else {
-                return perms.join(", ");
-            }
-        } else if (String(type) == "1") {
-            var perms = [];
-            var eq = [];
-            if(count >= 0x40000000) {
-                count -= 0x40000000;
-                eq.push("0x40000000");
-                perms.push("MANAGE_EMOJIS");
-            }
-            if(count >= 0x20000000) {
-                count -= 0x20000000;
-                eq.push("0x20000000");
-                perms.push("MANAGE_WEBHOOKS");
-            }
-            if(count >= 0x10000000) {
-                count -= 0x10000000;
-                eq.push("0x10000000");
-                perms.push("MANAGE_ROLES");
-            }
-            if(count >= 0x08000000) {
-                count -= 0x08000000;
-                eq.push("0x08000000");
-                perms.push("MANAGE_ROLES");
-            }
-            if(count >= 0x04000000) {
-                count -= 0x04000000;
-                eq.push("0x04000000");
-                perms.push("CHANGE_NICKNAME");
-            }
-            if(count >= 0x02000000) {
-                count -= 0x02000000;
-                eq.push("0x02000000");
-                perms.push("USE_VAD");
-            }
-            if(count >= 0x01000000) {
-                count -= 0x01000000;
-                eq.push("0x01000000");
-                perms.push("MOVE_MEMBERS");
-            }
-            if(count >= 0x00800000) {
-                count -= 0x00800000;
-                eq.push("0x00800000");
-                perms.push("DEAFEN_MEMBERS");
-            }
-            if(count >= 0x00400000) {
-                count -= 0x00400000;
-                eq.push("0x00400000");
-                perms.push("MUTE_MEMBERS");
-            }
-            if(count >= 0x00200000) {
-                count -= 0x00200000;
-                eq.push("0x00200000");
-                perms.push("SPEAK");
-            }
-            if(count >= 0x00100000) {
-                count -= 0x00100000;
-                eq.push("0x00100000");
-                perms.push("CONNECT");
-            }
-            if(count >= 0x00040000) {
-                count -= 0x00040000;
-                eq.push("0x00040000");
-                perms.push("USE_EXTERNAL_EMOJIS");
-            }
-            if(count >= 0x00020000) {
-                count -= 0x00020000;
-                eq.push("0x00020000");
-                perms.push("MENTION_EVERYONE");
-            }
-            if(count >= 0x00010000) {
-                count -= 0x00010000;
-                eq.push("0x00010000");
-                perms.push("READ_MESSAGE_HISTORY");
-            }
-            if(count >= 0x00008000) {
-                count -= 0x00008000;
-                eq.push("0x00008000");
-                perms.push("ATTACH_FILES");
-            }
-            if(count >= 0x00004000) {
-                count -= 0x00004000;
-                eq.push("0x00004000");
-                perms.push("EMBED_LINKS");
-            }
-            if(count >= 0x00002000) {
-                count -= 0x00002000;
-                eq.push("0x00002000");
-                perms.push("MANAGE_MESSAGES");
-            }
-            if(count >= 0x00001000) {
-                count -= 0x00001000;
-                eq.push("0x00001000");
-                perms.push("SEND_TTS_MESSAGES");
-            }
-            if(count >= 0x00000800) {
-                count -= 0x00000800;
-                eq.push("0x00000800");
-                perms.push("SEND_MESSAGES");
-            }
-            if(count >= 0x00000400) {
-                count -= 0x00000400;
-                eq.push("0x00000400");
-                perms.push("VIEW_CHANNEL");
-            }
-            if(count >= 0x00000080) {
-                count -= 0x00000080;
-                eq.push("0x00000080");
-                perms.push("VIEW_AUDIT_LOG");
-            }
-            if(count >= 0x00000040) {
-                count -= 0x00000040;
-                eq.push("0x00000040");
-                perms.push("ADD_REACTIONS");
-            }
-            if(count >= 0x00000020) {
-                count -= 0x00000020;
-                eq.push("0x00000020");
-                perms.push("MANAGE_GUILD");
-            }
-            if(count >= 0x00000010) {
-                count -= 0x00000010;
-                eq.push("0x00000010");
-                perms.push("MANAGE_CHANNELS");
-            }
-            if(count >= 0x00000008) {
-                count -= 0x00000008;
-                eq.push("0x00000008");
-                perms.push("ADMINISTRATOR");
-            }
-            if(count >= 0x00000004) {
-                count -= 0x00000004;
-                eq.push("0x00000004");
-                perms.push("BAN_MEMBERS");
-            }
-            if(count >= 0x00000002) {
-                count -= 0x00000002;
-                eq.push("0x00000002");
-                perms.push("KICK_MEMBERS");
-            }
-            if(count >= 0x00000001) {
-                count -= 0x00000001;
-                eq.push("0x00000001");
-                perms.push("CREATE_INSTANT_INVITE");
-            }
-            if (count !== 0) {
-                return "Error : Remainder of "+String(count)+"\nCached : `\``\n"+eq.join(" | ")+"\n`\``";
-            } else {
-                return eq.join(" | ");
-            }
-        } else {
-            return "Error : Not a valid type";
-        }
-    } else {
-        return "Error : "+count+"is not a valid number";
-    }
-}
-
-
 function getUser(id) {
     if (id.toLowerCase() === '$$collect') {
         var text = "";
@@ -690,6 +188,94 @@ function getRole(id) {
             return text;
         } else {
             return "Internal Error : `"+id+"` Not found in guild";
+        }
+    }
+}
+
+
+function makeBitwise(data, type) {
+    var type = (typeof type !== 'undefined') ?  type : "0";
+    var names = ["CREATE_INSTANT_INVITE","KICK_MEMBERS","BAN_MEMBERS","ADMINISTRATOR","MANAGE_CHANNELS","MANAGE_GUILD","ADD_REACTIONS","VIEW_AUDIT_LOG","VIEW_CHANNEL","SEND_MESSAGES","SEND_TTS_MESSAGES","MANAGE_MESSAGES","EMBED_LINKS","ATTACH_FILES","READ_MESSAGE_HISTORY","MENTION_EVERYONE","USE_EXTERNAL_EMOJIS","CONNECT","SPEAK","MUTE_MEMBERS","DEAFEN_MEMBERS","MOVE_MEMBERS","USE_VAD","CHANGE_NICKNAME","MANAGE_NICKNAMES","MANAGE_ROLES","MANAGE_WEBHOOKS","MANAGE_EMOJIS"];
+    var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
+    var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
+    var error = {"status":false};
+    var i;
+
+    var data = data.toString().toUpperCase();
+    var count = 0;
+    var results = [];
+
+    for (i = 0; i < names.length; i++) {
+        if (data.includes(names[i])||data.includes(numbname[i])) {
+            if (type === "0") {
+                //results.push(names[i]);
+                count += numbers[i];
+            } else if (type === "1") {
+                results.push(numbname[i]);
+                count += numbers[i];
+            } else {
+                error.status = true;
+                error.reason = "Invalid Type"
+            }
+        }
+    }
+    
+    if (error.status) {
+        return "Error : "+error.reason;
+    } else {
+        if (type === "0") {
+            return String(count);
+        } else if (type === "1") {
+            return results.join(" | ");
+        } else {
+            error.reason = "No Type Declaired"
+            return "Error : "+error.reason;
+        }
+    }
+}
+
+
+function unBitwise(data, type) {
+    var type = (typeof type !== 'undefined') ?  type : "0";
+    var names = ["CREATE_INSTANT_INVITE","KICK_MEMBERS","BAN_MEMBERS","ADMINISTRATOR","MANAGE_CHANNELS","MANAGE_GUILD","ADD_REACTIONS","VIEW_AUDIT_LOG","VIEW_CHANNEL","SEND_MESSAGES","SEND_TTS_MESSAGES","MANAGE_MESSAGES","EMBED_LINKS","ATTACH_FILES","READ_MESSAGE_HISTORY","MENTION_EVERYONE","USE_EXTERNAL_EMOJIS","CONNECT","SPEAK","MUTE_MEMBERS","DEAFEN_MEMBERS","MOVE_MEMBERS","USE_VAD","CHANGE_NICKNAME","MANAGE_NICKNAMES","MANAGE_ROLES","MANAGE_WEBHOOKS","MANAGE_EMOJIS"];
+    var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
+    var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
+    var error = {"status":false};
+    var i;
+
+    var data = parseInt(data);
+    //var count = 0;
+    var results = [];
+
+    if (data.toString() === 'NaN') {
+        error.status = true;
+        error.reason = "Invalid bitwise number";
+    } else {
+        for (i = 0; i < names.length; i++) {
+            if (data >= numbers[i]) {
+                if (type === "0") {
+                    results.push(names[i]);
+                    //count += numbers[i];
+                } else if (type === "1") {
+                    results.push(numbname[i]);
+                    //count += numbers[i];
+                } else {
+                    error.status = true;
+                    error.reason = "Invalid Type"
+                }
+            }
+        }
+    }
+    if (error.status) {
+        return "Error : "+error.reason;
+    } else {
+        if (type === "0") {
+            return results.join(" | ");
+        } else if (type === "1") {
+            return results.join(" | ");
+        } else {
+            error.reason = "No Type Declaired"
+            return "Error : "+error.reason;
         }
     }
 }
