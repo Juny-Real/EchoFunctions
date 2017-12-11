@@ -128,97 +128,193 @@ function search(arr, target) {
 
 
 
-function makeBitwise(data) {
-    if (typeof data !== 'string') {
-	return "Please use a valid string";
+function makeBitwise(data, type) {
+    var type = (typeof type !== 'undefined') ?  type : 0;
+    var data = data.toUpperCase();
+    var count = 0;
+    if (type.toString() == "0") {
+        if (data.includes("CREATE_INSTANT_INVITE")||data.includes("0x00000001")) {
+            count += 0x00000001;
+        }
+        if(data.includes("KICK_MEMBERS")||data.includes("0x00000002")) {
+            count += 0x00000002;
+        }
+        if(data.includes("BAN_MEMBERS")||data.includes("0x00000004")) {
+            count += 0x00000004;
+        }
+        if(data.includes("ADMINISTRATOR")||data.includes("0x00000008")) {
+            count += 0x00000008;
+        }
+        if(data.includes("MANAGE_CHANNELS")||data.includes("0x00000010")) {
+            count += 0x00000010;
+        }
+        if(data.includes("MANAGE_GUILD")||data.includes("0x00000020")) {
+            count += 0x00000020;
+        }
+        if(data.includes("ADD_REACTIONS")||data.includes("0x00000040")) {
+            count += 0x00000040;
+        }
+        if(data.includes("VIEW_AUDIT_LOG")||data.includes("0x00000080")) {
+            count += 0x00000080;
+        }
+        if(data.includes("VIEW_CHANNEL")||data.includes("0x00000400")) {
+            count += 0x00000400;
+        }
+        if(data.includes("SEND_MESSAGES")||data.includes("0x00000800")) {
+            count += 0x00000800;
+        }
+        if(data.includes("SEND_TTS_MESSAGES")||data.includes("0x00001000")) {
+            count += 0x00001000;
+        }
+        if(data.includes("MANAGE_MESSAGES")||data.includes("0x00002000")) {
+            count += 0x00002000;
+        }
+        if(data.includes("EMBED_LINKS")||data.includes("0x00004000")) {
+            count += 0x00004000;
+        }
+        if(data.includes("ATTACH_FILES")||data.includes("0x00008000")) {
+            count += 0x00008000;
+        }
+        if(data.includes("READ_MESSAGE_HISTORY")||data.includes("0x00010000")) {
+            count += 0x00010000;
+        }
+        if(data.includes("MENTION_EVERYONE")||data.includes("0x00020000")) {
+            count += 0x00020000;
+        }
+        if(data.includes("USE_EXTERNAL_EMOJIS")||data.includes("0x00040000")) {
+            count += 0x00040000;
+        }
+        if(data.includes("CONNECT")||data.includes("0x00100000")) {
+            count += 0x00100000;
+        }
+        if(data.includes("SPEAK")||data.includes("0x00200000")) {
+            count += 0x00200000;
+        }
+        if(data.includes("MUTE_MEMBERS")||data.includes("0x00400000")) {
+            count += 0x00400000;
+        }
+        if(data.includes("DEAFEN_MEMBERS")||data.includes("0x00800000")) {
+            count += 0x00800000;
+        }
+        if(data.includes("MOVE_MEMBERS")||data.includes("0x01000000")) {
+            count += 0x01000000;
+        }
+        if(data.includes("USE_VAD")||data.includes("0x02000000")) {
+            count += 0x02000000;
+        }
+        if(data.includes("CHANGE_NICKNAME")||data.includes("0x04000000")) {
+            count += 0x04000000;
+        }
+        if(data.includes("MANAGE_NICKNAMES")||data.includes("0x08000000")) {
+            count += 0x08000000;
+        }
+        if(data.includes("MANAGE_ROLES")||data.includes("0x10000000")) {
+            count += 0x10000000;
+        }
+        if(data.includes("MANAGE_WEBHOOKS")||data.includes("0x20000000")) {
+            count += 0x20000000;
+        }
+        if(data.includes("MANAGE_EMOJIS")||data.includes("0x40000000")) {
+            count += 0x40000000;
+        }
+        if (count == 0) {
+            return "Error : No Perms Found";
+        } else {
+            return count.toString();
+        }
+    } else if (type.toString() == "1") {
+        var eq = [];
+        if (data.includes("CREATE_INSTANT_INVITE")||data.includes("0x00000001")) {
+            eq.push(0x00000001);
+        }
+        if(data.includes("KICK_MEMBERS")||data.includes("0x00000002")) {
+            eq.push(0x00000002);
+        }
+        if(data.includes("BAN_MEMBERS")||data.includes("0x00000004")) {
+            eq.push(0x00000004);
+        }
+        if(data.includes("ADMINISTRATOR")||data.includes("0x00000008")) {
+            eq.push(0x00000008);
+        }
+        if(data.includes("MANAGE_CHANNELS")||data.includes("0x00000010")) {
+            eq.push(0x00000010);
+        }
+        if(data.includes("MANAGE_GUILD")||data.includes("0x00000020")) {
+            eq.push(0x00000020);
+        }
+        if(data.includes("ADD_REACTIONS")||data.includes("0x00000040")) {
+            eq.push(0x00000040);
+        }
+        if(data.includes("VIEW_AUDIT_LOG")||data.includes("0x00000080")) {
+            eq.push(0x00000080);
+        }
+        if(data.includes("VIEW_CHANNEL")||data.includes("0x00000400")) {
+            eq.push(0x00000400);
+        }
+        if(data.includes("SEND_MESSAGES")||data.includes("0x00000800")) {
+            eq.push(0x00000800);
+        }
+        if(data.includes("SEND_TTS_MESSAGES")||data.includes("0x00001000")) {
+            eq.push(0x00001000);
+        }
+        if(data.includes("MANAGE_MESSAGES")||data.includes("0x00002000")) {
+            eq.push(0x00002000);
+        }
+        if(data.includes("EMBED_LINKS")||data.includes("0x00004000")) {
+            eq.push(0x00004000);
+        }
+        if(data.includes("ATTACH_FILES")||data.includes("0x00008000")) {
+            eq.push(0x00008000);
+        }
+        if(data.includes("READ_MESSAGE_HISTORY")||data.includes("0x00010000")) {
+            eq.push(0x00010000);
+        }
+        if(data.includes("MENTION_EVERYONE")||data.includes("0x00020000")) {
+            eq.push(0x00020000);
+        }
+        if(data.includes("USE_EXTERNAL_EMOJIS")||data.includes("0x00040000")) {
+            eq.push(0x00040000);
+        }
+        if(data.includes("CONNECT")||data.includes("0x00100000")) {
+            eq.push(0x00100000);
+        }
+        if(data.includes("SPEAK")||data.includes("0x00200000")) {
+            eq.push(0x00200000);
+        }
+        if(data.includes("MUTE_MEMBERS")||data.includes("0x00400000")) {
+            eq.push(0x00400000);
+        }
+        if(data.includes("DEAFEN_MEMBERS")||data.includes("0x00800000")) {
+            eq.push(0x00800000);
+        }
+        if(data.includes("MOVE_MEMBERS")||data.includes("0x01000000")) {
+            eq.push(0x01000000);
+        }
+        if(data.includes("USE_VAD")||data.includes("0x02000000")) {
+            eq.push(0x02000000);
+        }
+        if(data.includes("CHANGE_NICKNAME")||data.includes("0x04000000")) {
+            eq.push(0x04000000);
+        }
+        if(data.includes("MANAGE_NICKNAMES")||data.includes("0x08000000")) {
+            eq.push(0x08000000);
+        }
+        if(data.includes("MANAGE_ROLES")||data.includes("0x10000000")) {
+            eq.push(0x10000000);
+        }
+        if(data.includes("MANAGE_WEBHOOKS")||data.includes("0x20000000")) {
+            eq.push(0x20000000);
+        }
+        if(data.includes("MANAGE_EMOJIS")||data.includes("0x40000000")) {
+            eq.push(0x40000000);
+        }
+        if (eq.length === 0) {
+            return "Error : No Perms Found"
+        } else {
+            return eq.join(" | ");
+        }
     } else {
-        var data = data.toUpperCase();
-	var count = 0;
-	if (data.includes("CREATE_INSTANT_INVITE")) {
-	  count += 0x00000001;
-	}
-	if(data.includes("KICK_MEMBERS")) {
-	  count += 0x00000002;
-	}
-	if(data.includes("BAN_MEMBERS")) {
-	  count += 0x00000004;
-	}
-	if(data.includes("ADMINISTRATOR")) {
-	  count += 0x00000008;
-	}
-	if(data.includes("MANAGE_CHANNELS")) {
-	  count += 0x00000010;
-	}
-	if(data.includes("MANAGE_GUILD")) {
-	  count += 0x00000020;
-	}
-	if(data.includes("ADD_REACTIONS")) {
-	  count += 0x00000040;
-	}
-	if(data.includes("VIEW_AUDIT_LOG")) {
-	    count += 0x00000080;
-	}
-	if(data.includes("VIEW_CHANNEL")) {
-	    count += 0x00000400;
-	}
-	if(data.includes("SEND_MESSAGES")) {
-	    count += 0x00000800;
-	}
-	if(data.includes("SEND_TTS_MESSAGES")) {
-	    count += 0x00001000;
-	}
-	if(data.includes("MANAGE_MESSAGES")) {
-	    count += 0x00002000;
-	}
-	if(data.includes("EMBED_LINKS")) {
-	    count += 0x00004000;
-	}
-	if(data.includes("ATTACH_FILES")) {
-	    count += 0x00008000;
-	}
-	if(data.includes("READ_MESSAGE_HISTORY")) {
-	    count += 0x00010000;
-	}
-	if(data.includes("MENTION_EVERYONE")) {
-	    count += 0x00020000;
-	}
-	if(data.includes("USE_EXTERNAL_EMOJIS")) {
-	    count += 0x00040000;
-	}
-	if(data.includes("CONNECT")) {
-	    count += 0x00100000;
-	}
-	if(data.includes("SPEAK")) {
-	    count += 0x00200000;
-	}
-	if(data.includes("MUTE_MEMBERS")) {
-	    count += 0x00400000;
-	}
-	if(data.includes("DEAFEN_MEMBERS")) {
-	    count += 0x00800000;
-	}
-	if(data.includes("MOVE_MEMBERS")) {
-	    count += 0x01000000;
-	}
-	if(data.includes("USE_VAD")) {
-	    count += 0x02000000;
-	}
-	if(data.includes("CHANGE_NICKNAME")) {
-	    count += 0x04000000;
-	}
-	if(data.includes("MANAGE_NICKNAMES")) {
-	    count += 0x08000000;
-	}
-	if(data.includes("MANAGE_ROLES")) {
-	    count += 0x10000000;
-	}
-	if(data.includes("MANAGE_WEBHOOKS")) {
-	    count += 0x20000000;
-	}
-	if(data.includes("MANAGE_EMOJIS")) {
-	    count += 0x40000000;
-	}
-	return count;
+        return "Error : Invalid type";
     }
 }
 
