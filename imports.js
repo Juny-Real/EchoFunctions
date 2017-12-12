@@ -247,6 +247,10 @@ function unBitwise(data, type) {
     //var count = 0;
     var results = [];
 
+    var numbers = numbers.reverse();
+    var names = names.reverse();
+    var numbname = numbname.reverse();
+	
     if (data.toString() === 'NaN') {
         error.status = true;
         error.reason = "Invalid bitwise number";
