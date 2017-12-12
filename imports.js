@@ -244,13 +244,12 @@ function unBitwise(data, type) {
     var i;
 
     var data = parseInt(data);
-    //var count = 0;
     var results = [];
 
     var numbers = numbers.reverse();
     var names = names.reverse();
     var numbname = numbname.reverse();
-	
+
     if (data.toString() === 'NaN') {
         error.status = true;
         error.reason = "Invalid bitwise number";
@@ -259,10 +258,10 @@ function unBitwise(data, type) {
             if (data >= numbers[i]) {
                 if (type === "0") {
                     results.push(names[i]);
-                    //count += numbers[i];
+                    data -= numbers[i];
                 } else if (type === "1") {
                     results.push(numbname[i]);
-                    //count += numbers[i];
+                    data -= numbers[i];
                 } else {
                     error.status = true;
                     error.reason = "Invalid Type"
