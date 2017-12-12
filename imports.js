@@ -351,7 +351,7 @@ function hasPerm(userId, permission) {
     var j;
 
     //Check for errors in the input
-    if (!userID) {
+    if (!userId) {
         error.status = true;
         error.reason = "Missing userID";
     } else if (!permission) {
