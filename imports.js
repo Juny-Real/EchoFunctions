@@ -345,7 +345,7 @@ function unBitwise(data, type) {
 }
 
 
-function hasPerm(userId, permission) {
+function hasPerm(userId, ... permission) {
     var error = {"status":false};
     var i;
     var j;
@@ -360,9 +360,6 @@ function hasPerm(userId, permission) {
     } else if (typeof userId !== 'string') {
         error.status = true;
         error.reason = "Invalid userID (Not string)";
-    } else if (!Array.isArray(permission)) {
-        error.status = true;
-        error.reason = "Invalid permissions (Must be an array)";        
     } else if (permission.length <= 0) {
         error.status = true;
         error.reason = "Invalid permissions (Must have 1+ permissions)";
