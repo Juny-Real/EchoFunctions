@@ -345,112 +345,118 @@ function unBitwise(data, type) {
 }
 
 
-  function hasPerm(userId, ...theArgs) {
-      var error = {"status":false};
-      var i;
-      var j;
-  
-      //Check for errors in the input
-      if (!userId) {
-          error.status = true;
-          error.reason = "Missing userID";
-      } else if (!theArgs) {
-          error.status = true;
-          error.reason = "Missing permission";
-      } else if (typeof userId !== 'string') {
-          error.status = true;
-          error.reason = "Invalid userID (Not string)";
-      } else if (theArgs.length <= 0) {
-          error.status = true;
-          error.reason = "Invalid permissions (Must have 1+ permissions)";
-      }
-  
-  
-      //end to deal with errors
-      if (error.status) {
-          return error.reason;
-      }
-  
-  
-      //validate the permissions
-      var matchedPerms = [];
-      var names = ["CREATE_INSTANT_INVITE","KICK_MEMBERS","BAN_MEMBERS","ADMINISTRATOR","MANAGE_CHANNELS","MANAGE_GUILD","ADD_REACTIONS","VIEW_AUDIT_LOG","VIEW_CHANNEL","SEND_MESSAGES","SEND_TTS_MESSAGES","MANAGE_MESSAGES","EMBED_LINKS","ATTACH_FILES","READ_MESSAGE_HISTORY","MENTION_EVERYONE","USE_EXTERNAL_EMOJIS","CONNECT","SPEAK","MUTE_MEMBERS","DEAFEN_MEMBERS","MOVE_MEMBERS","USE_VAD","CHANGE_NICKNAME","MANAGE_NICKNAMES","MANAGE_ROLES","MANAGE_WEBHOOKS","MANAGE_EMOJIS"];
-      var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
-      var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
-      for (i=0;i < theArgs.length;i++) {
-          for (i=0;i < names.length;i++) {
-              if (theArgs[i].toUpperCase() === theArgs[i]||parseInt(permission[i]) === numbers[i]||theArgs[i].toLowerCase() === numbname[i]) {
-                  matchedPerms.push(numbers[i]);
-              }
-          }
-      }
-      if (matchedPerms.length == 0) {
-          error.status = true;
-          error.reason = "Invalid Permissions (None found)";
-      }
-  
-      //check for user and grab roles
-      var foundUser = false;
-      var arr = [];
-      for (i = 0;i < ServerMembers.length;i++) {
-          if (userId === ServerMembers[i].User.ID) {
-              foundUser = true
-              if (ServerMembers[i].Roles.length > 0) {
-                  for (j = 0;j < ServerMembers[i].Roles.length;j++) {
-                      arr.push(ServerMembers[i].Roles[j]);
-                  }
-              }
-          }
-      }
-      if (!foundUser) {
-          error.status = true;
-          error.reason = "User not found"
-      }
-  
-  
-      //end to deal with errors
-      if (error.status) {
-          return error.reason;
-      }
-  
-  
-      //find role permissions
-      var bitfields = [];
-      if (arr.length > 0) {
-          for (i=0;i < arr.length;i++) {
-              for (j=0;j < ServerRoles.length;j++) {
-                  if (arr[i] === ServerRoles[j].ID) {
-                      bitfields.push(ServerRoles[j].Permissions)
-                  }
-              }
-          }
-      } else {
-          error.status = true;
-          error.reason = "User has no roles (No permissions collected)";
-      }
-  
-  
-      //check role permissions for given permissions
-      //bitfields and matchedPerms
-      var matches = 0;
-      for (i=0;i < matchedPerms.length;i++) {
-          for (j=0;j < bitfields.length;j++) {
-              if (matchedPerms[i] <= bitfields[j]) {
-                  matches++;
-              }
-          }
-      }
-      if (matches !== matchedPerms.length) {
-          return "False";
-      } else if (matches === matchedPerms.length) {
-          return "True";
-      } else {
-          error.status = true;
-          error.reason = "Internal error (IDFK)";
-      }
-  
-      //end to deal with errors
-      if (error.status) {
-          return error.reason;
-      }
-  }
+function hasPerm(userId, permission) {
+    var error = {"status":false};
+    var i;
+    var j;
+
+    //Check for errors in the input
+    if (!userId) {
+        error.status = true;
+        error.reason = "Missing userID";
+    } else if (!permission) {
+        error.status = true;
+        error.reason = "Missing permission";
+    } else if (typeof userId !== 'string') {
+        error.status = true;
+        error.reason = "Invalid userID (Not string)";
+    } else if (!Array.isArray(permission)) {
+        error.status = true;
+        error.reason = "Invalid permissions (Must be an array)";        
+    } else if (permission.length <= 0) {
+        error.status = true;
+        error.reason = "Invalid permissions (Must have 1+ permissions)";
+    } else if (typeof permission === 'undefined') {
+        error.status = true;
+        error.reason = "Undefined Permissions";        
+    }
+
+
+    //end to deal with errors
+    if (error.status) {
+        return error.reason;
+    }
+
+
+    //validate the permissions
+    var matchedPerms = [];
+    var names = ["CREATE_INSTANT_INVITE","KICK_MEMBERS","BAN_MEMBERS","ADMINISTRATOR","MANAGE_CHANNELS","MANAGE_GUILD","ADD_REACTIONS","VIEW_AUDIT_LOG","VIEW_CHANNEL","SEND_MESSAGES","SEND_TTS_MESSAGES","MANAGE_MESSAGES","EMBED_LINKS","ATTACH_FILES","READ_MESSAGE_HISTORY","MENTION_EVERYONE","USE_EXTERNAL_EMOJIS","CONNECT","SPEAK","MUTE_MEMBERS","DEAFEN_MEMBERS","MOVE_MEMBERS","USE_VAD","CHANGE_NICKNAME","MANAGE_NICKNAMES","MANAGE_ROLES","MANAGE_WEBHOOKS","MANAGE_EMOJIS"];
+    var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
+    var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
+    for (i=0;i < permission.length;i++) {
+        for (i=0;i < names.length;i++) {
+            if (permission[i].toUpperCase() === names[i]||parseInt(permission[i]) === numbers[i]||permission[i].toLowerCase() === numbname[i]) {
+                matchedPerms.push(numbers[i]);
+            }
+        }
+    }
+    if (matchedPerms.length == 0) {
+        error.status = true;
+        error.reason = "Invalid Permissions (None found)";
+    }
+
+    //check for user and grab roles
+    var foundUser = false;
+    var arr = [];
+    for (i = 0;i < ServerMembers.length;i++) {
+        if (userId === ServerMembers[i].User.ID) {
+            foundUser = true
+            if (ServerMembers[i].Roles.length > 0) {
+                for (j = 0;j < ServerMembers[i].Roles.length;j++) {
+                    arr.push(ServerMembers[i].Roles[j]);
+                }
+            }
+        }
+    }
+    if (!foundUser) {
+        error.status = true;
+        error.reason = "User not found"
+    }
+
+
+    //end to deal with errors
+    if (error.status) {
+        return error.reason;
+    }
+
+
+    //find role permissions
+    var bitfields = [];
+    if (arr.length > 0) {
+        for (i=0;i < arr.length;i++) {
+            for (j=0;j < ServerRoles.length;j++) {
+                if (arr[i] === ServerRoles[j].ID) {
+                    bitfields.push(ServerRoles[j].Permissions)
+                }
+            }
+        }
+    } else {
+        error.status = true;
+        error.reason = "User has no roles (No permissions collected)";
+    }
+
+
+    //check role permissions for given permissions
+    //bitfields and matchedPerms
+    var matches = 0;
+    for (i=0;i < matchedPerms.length;i++) {
+        for (j=0;j < bitfields.length;j++) {
+            if (matchedPerms[i] <= bitfields[j]) {
+                matches++;
+            }
+        }
+    }
+    if (matches !== matchedPerms.length) {
+        return "False";
+    } else if (matches === matchedPerms.length) {
+        return "True";
+    } else {
+        error.status = true;
+        error.reason = "Internal error (IDFK)";
+    }
+
+    //end to deal with errors
+    if (error.status) {
+        return error.reason;
+    }
+}
