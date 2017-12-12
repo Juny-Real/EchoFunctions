@@ -384,9 +384,9 @@ function hasPerm(userId, permission) {
     var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
     var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
     for (i=0;i < permission.length;i++) {
-        for (i=0;i < names.length;i++) {
-            if (permission[i].toUpperCase() === names[i]||parseInt(permission[i]) === numbers[i]||permission[i].toLowerCase() === numbname[i]) {
-                matchedPerms.push(numbers[i]);
+        for (j=0;j < names.length;j++) {
+            if (permission[i].toUpperCase() === names[j]||parseInt(permission[i]) === numbers[j]||permission[i].toLowerCase() === numbname[j]) {
+                matchedPerms.push(numbers[j]);
             }
         }
     }
