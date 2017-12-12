@@ -386,7 +386,7 @@ function hasPerm(userId, permission) {
     for (i=0;i < permission.length;i++) {
         for (j=0;j < names.length;j++) {
             if (permission[i].toUpperCase() === names[j]||parseInt(permission[i]) === numbers[j]||permission[i].toLowerCase() === numbname[j]) {
-                matchedPerms.push(numbers[j]);
+                matchedPerms.push(numbers[i]);
             }
         }
     }
@@ -402,9 +402,7 @@ function hasPerm(userId, permission) {
         if (userId === ServerMembers[i].User.ID) {
             foundUser = true
             if (ServerMembers[i].Roles.length > 0) {
-                for (j = 0;j < ServerMembers[i].Roles.length;j++) {
-                    arr.push(ServerMembers[i].Roles[j]);
-                }
+                arr = ServerMembers.Roles;
             }
         }
     }
@@ -439,6 +437,10 @@ function hasPerm(userId, permission) {
     //check role permissions for given permissions
     //bitfields and matchedPerms
     var matches = 0;
+    if (bitfields.length == 0) {
+        error.status = true;
+        error.reason = "Internal error (Bitfields? IDFK)";
+    }
     for (i=0;i < matchedPerms.length;i++) {
         for (j=0;j < bitfields.length;j++) {
             if (matchedPerms[i] <= bitfields[j]) {
