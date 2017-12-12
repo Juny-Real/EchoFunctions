@@ -363,6 +363,9 @@ function hasPerm(userId, permission) {
     } else if (!Array.isArray(permission)) {
         error.status = true;
         error.reason = "Invalid permissions (Must be an array)";        
+    } else if (permission.length <= 0) {
+        error.status = true;
+        error.reason = "Invalid permissions (Must have 1+ permissions)";
     }
 
 
@@ -377,14 +380,13 @@ function hasPerm(userId, permission) {
     var names = ["CREATE_INSTANT_INVITE","KICK_MEMBERS","BAN_MEMBERS","ADMINISTRATOR","MANAGE_CHANNELS","MANAGE_GUILD","ADD_REACTIONS","VIEW_AUDIT_LOG","VIEW_CHANNEL","SEND_MESSAGES","SEND_TTS_MESSAGES","MANAGE_MESSAGES","EMBED_LINKS","ATTACH_FILES","READ_MESSAGE_HISTORY","MENTION_EVERYONE","USE_EXTERNAL_EMOJIS","CONNECT","SPEAK","MUTE_MEMBERS","DEAFEN_MEMBERS","MOVE_MEMBERS","USE_VAD","CHANGE_NICKNAME","MANAGE_NICKNAMES","MANAGE_ROLES","MANAGE_WEBHOOKS","MANAGE_EMOJIS"];
     var numbers = [0x00000001,0x00000002,0x00000004,0x00000008,0x00000010,0x00000020,0x00000040,0x00000080,0x00000400,0x00000800,0x00001000,0x00002000,0x00004000,0x00008000,0x00010000,0x00020000,0x00040000,0x00100000,0x00200000,0x00400000,0x00800000,0x01000000,0x02000000,0x04000000,0x08000000,0x10000000,0x20000000,0x40000000];
     var numbname = ["0x00000001","0x00000002","0x00000004","0x00000008","0x00000010","0x00000020","0x00000040","0x00000080","0x00000400","0x00000800","0x00001000","0x00002000","0x00004000","0x00008000","0x00010000","0x00020000","0x00040000","0x00100000","0x00200000","0x00400000","0x00800000","0x01000000","0x02000000","0x04000000","0x08000000","0x10000000","0x20000000","0x40000000"];
-    permission.forEach(p => {
-        var i;
+    for (i=0;i < permission.length;i++) {
         for (i=0;i < names.length;i++) {
-            if (p.toString().toUpperCase() === names[i]||parseInt(p) === numbers[i]||p.toLowerCase() === numbname[i]) {
+            if (permission[i].toString().toUpperCase() === names[i]||parseInt(permission[i]) === numbers[i]||permission[i].toLowerCase() === numbname[i]) {
                 matchedPerms.push(numbers[i]);
             }
         }
-    })
+    }
     if (matchedPerms.length == 0) {
         error.status = true;
         error.reason = "Invalid Permissions (None found)";
