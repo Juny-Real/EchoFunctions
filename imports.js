@@ -13,6 +13,17 @@ if (!String.prototype.includes) {
   };
 }
 
+if (!Object.entries)
+Object.entries = function( obj ){
+  var ownProps = Object.keys( obj ),
+      i = ownProps.length,
+      resArray = new Array(i); // preallocate the Array
+  while (i--)
+    resArray[i] = [ownProps[i], obj[ownProps[i]]];
+
+  return resArray;
+};
+
 if (!Array.prototype.forEach) {
         Array.prototype.forEach = function(callback/*, thisArg*/) {
 
