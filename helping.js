@@ -139,7 +139,7 @@ function viewShop(user, weapon, armour) {
     if (armAvail.length === 1) {
         armourShow = false;
     }
-  
+
     if (weaponsShow && armourShow) {
         return weapAvail.join("\n") + "\n\n" + armAvail.join("\n");
     } else if (weaponsShow) {
@@ -150,5 +150,3 @@ function viewShop(user, weapon, armour) {
         return "Nothing is available! Sorry!"
     }
 }
-
-console.log(viewShop(userObj, weaponObj, armourObj));
