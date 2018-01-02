@@ -9,7 +9,7 @@ if (!Object.entries)
     return resArray;
   };
 
-function viewShop(user, shop) {
+function viewShop(user, weapon, armour) {
     if (!user) {
         throw new ReferenceError("Missing userObj! (Shop Command)");
     }
@@ -30,56 +30,125 @@ function viewShop(user, shop) {
     }
     //done with user error detecting
 
-    if (!shop) {
-        throw new ReferenceError("Missing shopObj! (Shop Command)");
+    if (!weapon) {
+        throw new ReferenceError("Missing weaponObj! (Shop Command)");
     }
-    if (typeof shop !== 'object') {
-        throw new TypeError("shopObj is not an object! (Shop Command)");
+    if (typeof weapon !== 'object') {
+        throw new TypeError("weaponObj is not an object! (Shop Command)");
     }
-    if (shop.toString() !== '[object Object]') {
-        throw new TypeError("shopObj is wrong type of object! (Shop Command)");
+    if (weapon.toString() !== '[object Object]') {
+        throw new TypeError("weaponObj is wrong type of object! (Shop Command)");
     }
-    //done with shop error detecting
+    //done with weapon error detecting
 
-    var obj = Object.entries(shop);
-    var objList = [];
+    if (!armour) {
+        throw new ReferenceError("Missing armourObj! (Shop Command)");
+    }
+    if (typeof armour !== 'object') {
+        throw new TypeError("armourObj is not an object! (Shop Command)");
+    }
+    if (armour.toString() !== '[object Object]') {
+        throw new TypeError("armourObj is wrong type of object! (Shop Command)");
+    }
+    //done with armour error detecting
+
+    var weap = Object.entries(weapon);
+    var weapObjList = [];
     
-    for (i=0; i < obj.length; i++) {
-      objList.push(JSON.parse(obj[i][1]));
+    for (i=0; i < weap.length; i++) {
+      weapObjList.push(JSON.parse(weap[i][1]));
     }
     
-    var avail = []; 
+    var weapAvail = []; 
+    weapAvail.push('Weapons\n========\n');
 
-    for (i=0; i < objList.length; i++) {
-        if (user.userLevel >= objList[i].Level) {
-            var souls = true;
-            var mecca = true;
-            if (!objList[i].Souls) {
-                souls =  false;
+    for (i=0; i < weapObjList.length; i++) {
+        if (user.userLevel >= weapObjList[i].Level) {
+            var weapSouls = true;
+            var weapMecca = true;
+            if (!weapObjList[i].Souls) {
+                weapSouls =  false;
             }
-            if (!objList[i].Mecca) {
-                mecca = false;
+            if (!weapObjList[i].Mecca) {
+                weapMecca = false;
             }
-            if (mecca && souls) {
-                if (user.userSouls >= objList[i].Souls && user.userMecca >= objList[i].Mecca) {
-                    avail.push(objList[i].Name + " : " + objList[i].DMG + "DMG");
+            if (weapMecca && weapSouls) {
+                if (user.userSouls >= weapObjList[i].Souls && user.userMecca >= weapObjList[i].Mecca) {
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
                 }
-            } else if (souls) {
-                if (user.userSouls >= objList[i].Souls) {
-                    avail.push(objList[i].Name + " : " + objList[i].DMG + "DMG");
+            } else if (weapSouls) {
+                if (user.userSouls >= weapObjList[i].Souls) {
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
                 }
-            } else if (mecca) {
-                if (user.userMecca >= objList[i].Mecca) {
-                    avail.push(objList[i].Name + " : " + objList[i].DMG + "DMG");
+            } else if (weapMecca) {
+                if (user.userMecca >= weapObjList[i].Mecca) {
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
                 }
             } else {
-                avail.push(objList[i].Name + " : " + objList[i].DMG + "DMG");
+                weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
             }
         }
     }
-    if (avail.length !== 0) {
-        return avail.join("\n");
+    //done with weapons!
+
+    var arm = Object.entries(armour);
+    var armObjList = [];
+    
+    for (i=0; i < arm.length; i++) {
+      armObjList.push(JSON.parse(arm[i][1]));
+    }
+    
+    var armAvail = [];
+    armAvail.push('Armors\n========\n');
+
+    for (i=0; i < armObjList.length; i++) {
+        if (user.userLevel >= armObjList[i].Level) {
+            var armSouls = true;
+            var armMecca = true;
+            if (!armObjList[i].Souls) {
+                armSouls =  false;
+            }
+            if (!armObjList[i].Mecca) {
+                armMecca = false;
+            }
+            if (armMecca && armSouls) {
+                if (user.userSouls >= armObjList[i].Souls && user.userMecca >= armObjList[i].Mecca) {
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                }
+            } else if (armSouls) {
+                if (user.userSouls >= armObjList[i].Souls) {
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                }
+            } else if (armMecca) {
+                if (user.userMecca >= armObjList[i].Mecca) {
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                }
+            } else {
+                armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+            }
+        }
+    }
+
+
+    var weaponsShow = true;
+    var armourShow = true;
+
+    if (weapAvail.length === 1) {
+        weaponsShow = false;
+    }
+    if (armAvail.length === 1) {
+        armourShow = false;
+    }
+  
+    if (weaponsShow && armourShow) {
+        return weapAvail.join("\n") + "\n\n" + armAvail.join("\n");
+    } else if (weaponsShow) {
+        return weapAvail.join("\n");
+    } else if (armourShow) {
+        return armAvail.join("\n");
     } else {
         return "Nothing is available! Sorry!"
     }
 }
+
+console.log(viewShop(userObj, weaponObj, armourObj));
