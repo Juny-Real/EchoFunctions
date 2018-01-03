@@ -356,7 +356,7 @@ function buyItem(user, item, weapon, armour) {
 
 
     for (i=0; i < weapObjList.length; i++) {
-        if (item === weapObjList[i].Name) {
+        if (item.toLowerCase() === weapObjList[i].Name) {
             weapCheck = true;
             weapName += weapObjList[i].Name;
         }
@@ -364,7 +364,7 @@ function buyItem(user, item, weapon, armour) {
 
     if (weapCheck === false) {
         for (i=0; i < armObjList.length; i++) {
-            if (item === armObjList[i].Name) {
+            if (item.toLowerCase() === armObjList[i].Name) {
                 armCheck = true;
                 armName += armObjList[i].Name;
             }
@@ -372,7 +372,7 @@ function buyItem(user, item, weapon, armour) {
     }
 
     if (weapCheck === false && armCheck === false) {
-        returnObj.message = "No Item Matching The Name `"+item+"` Was Found! (Note : Is Case Sensitive)";
+        returnObj.message = "No Item Matching The Name `"+item+"` Was Found!";
         return returnObj;
     }
 
