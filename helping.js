@@ -74,18 +74,18 @@ function viewShop(user, weapon, armour) {
             }
             if (weapMecca && weapSouls) {
                 if (user.userSouls >= weapObjList[i].Souls && user.userMecca >= weapObjList[i].Mecca) {
-                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG"+"\n"+"Cost : `"+weapObjList[i].Souls+"` Souls & `"+weapObjList[i].Mecca+"` Mecca");
                 }
             } else if (weapSouls) {
                 if (user.userSouls >= weapObjList[i].Souls) {
-                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG"+"\n"+"Cost : `"+weapObjList[i].Souls+"` Souls");
                 }
             } else if (weapMecca) {
                 if (user.userMecca >= weapObjList[i].Mecca) {
-                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
+                    weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG"+"\n"+"Cost : `"+weapObjList[i].Mecca+"` Mecca");
                 }
             } else {
-                weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
+                weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG"+"\n"+"Cost : `Error` Nothing listed");
             }
         }
     }
@@ -113,18 +113,18 @@ function viewShop(user, weapon, armour) {
             }
             if (armMecca && armSouls) {
                 if (user.userSouls >= armObjList[i].Souls && user.userMecca >= armObjList[i].Mecca) {
-                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection"+"\n"+"Cost : `"+armObjList[i].Souls+"` Souls & `"+armObjList[i].Mecca+"` Mecca");
                 }
             } else if (armSouls) {
                 if (user.userSouls >= armObjList[i].Souls) {
-                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection"+"\n"+"Cost : `"+armObjList[i].Souls+"` Souls");
                 }
             } else if (armMecca) {
                 if (user.userMecca >= armObjList[i].Mecca) {
-                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                    armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection"+"\n"+"Cost : `"+armObjList[i].Mecca+"` Mecca");
                 }
             } else {
-                armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+                armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection"+"\n"+"Cost : `Error` Nothing listed");
             }
         }
     }
