@@ -9,6 +9,134 @@ if (!Object.entries)
     return resArray;
   };
 
+function leveledWeap(user, weapon) {
+    if (!user) {
+        throw new ReferenceError("Missing userObj! (Shop Command)");
+    }
+    if (typeof user !== 'object') {
+        throw new TypeError("userObj is not an object! (Shop Command)");
+    }
+    if (user.toString() !== '[object Object]') {
+        throw new TypeError("userObj is wrong type of object! (Shop Command)");
+    }
+    if (!user.userLevel && user.userLevel !== 0) {
+        throw new ReferenceError("userObj is missing user's levels! (Shop Command)");
+    }
+    if (!user.userMecca && user.userMecca !== 0) {
+        throw new ReferenceError("userObj is missing user's mecca! (Shop Command)");
+    }
+    if (!user.userSouls && user.userSouls !== 0) {
+        throw new ReferenceError("userObj is missing user's souls! (Shop Command)");
+    }
+    //done with user error detecting
+
+
+    if (!weapon) {
+        throw new ReferenceError("Missing weaponObj! (Shop Command)");
+    }
+    if (typeof weapon !== 'object') {
+        throw new TypeError("weaponObj is not an object! (Shop Command)");
+    }
+    if (weapon.toString() !== '[object Object]') {
+        throw new TypeError("weaponObj is wrong type of object! (Shop Command)");
+    }
+    //done with weapon error detecting
+
+
+    var weap = Object.entries(weapon);
+    var weapObjList = [];
+    
+    for (i=0; i < weap.length; i++) {
+      weapObjList.push(JSON.parse(weap[i][1]));
+    }
+    
+    var weapAvail = []; 
+    weapAvail.push('Weapons\n========\n');
+
+    for (i=0; i < weapObjList.length; i++) {
+        if (user.userLevel >= weapObjList[i].Level) {
+            weapAvail.push(weapObjList[i].Name + " : " + weapObjList[i].DMG + " DMG");
+        }
+    }
+    //done with weapons!
+
+    var weaponsShow = true;
+
+    if (weapAvail.length === 1) {
+        weaponsShow = false;
+    }
+
+    if (weaponsShow) {
+        return weapAvail.join("\n");
+    } else {
+        return "Nothing is available! Sorry!"
+    }
+}
+
+function leveledArm(user, armour) {
+    if (!user) {
+        throw new ReferenceError("Missing userObj! (Shop Command)");
+    }
+    if (typeof user !== 'object') {
+        throw new TypeError("userObj is not an object! (Shop Command)");
+    }
+    if (user.toString() !== '[object Object]') {
+        throw new TypeError("userObj is wrong type of object! (Shop Command)");
+    }
+    if (!user.userLevel && user.userLevel !== 0) {
+        throw new ReferenceError("userObj is missing user's levels! (Shop Command)");
+    }
+    if (!user.userMecca && user.userMecca !== 0) {
+        throw new ReferenceError("userObj is missing user's mecca! (Shop Command)");
+    }
+    if (!user.userSouls && user.userSouls !== 0) {
+        throw new ReferenceError("userObj is missing user's souls! (Shop Command)");
+    }
+    //done with user error detecting
+
+
+    if (!armour) {
+        throw new ReferenceError("Missing armourObj! (Shop Command)");
+    }
+    if (typeof armour !== 'object') {
+        throw new TypeError("armourObj is not an object! (Shop Command)");
+    }
+    if (armour.toString() !== '[object Object]') {
+        throw new TypeError("armourObj is wrong type of object! (Shop Command)");
+    }
+    //done with armour error detecting
+
+
+    var arm = Object.entries(armour);
+    var armObjList = [];
+    
+    for (i=0; i < arm.length; i++) {
+      armObjList.push(JSON.parse(arm[i][1]));
+    }
+    
+    var armAvail = [];
+    armAvail.push('Armors\n========\n');
+
+    for (i=0; i < armObjList.length; i++) {
+        if (user.userLevel >= armObjList[i].Level) {
+            armAvail.push(armObjList[i].Name + " : " + armObjList[i].Protection + " Protection");
+        }
+    }
+    //done with armours!
+
+    var armourShow = true;
+
+    if (armAvail.length === 1) {
+        armourShow = false;
+    }
+
+    if (armourShow) {
+        return armAvail.join("\n");
+    } else {
+        return "Nothing is available! Sorry!"
+    }
+}
+
 function viewShop(user, weapon, armour) {
     if (!user) {
         throw new ReferenceError("Missing userObj! (Shop Command)");
