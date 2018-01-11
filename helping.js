@@ -383,7 +383,11 @@ function buyItem(user, item, weapon, armour) {
                 var userWeap;
                 for (j=0; j < weapObjList.length; j++) {
                     if (weapObjList[j].Name === user.userWeapon) {
-                        userWeap = weapObjList[j].DMG;
+                      var data = weapObjList[j].DMG;
+                      if(data.includes("-")) {
+                        var spliced = data.split("-")[1];
+                           userWeap = spliced;
+                        }
                     }
                 }
                 if (weapObjList[i].DMG <= userWeap) {
