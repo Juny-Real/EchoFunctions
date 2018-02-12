@@ -1,5 +1,5 @@
 var info = {};
-/*==*/info.date = "September 13th, 2017";
+/*==*/info.date = "Febuary 11th 2018";
 var bC = 0;
 var uC = 0;
 var i;
@@ -56,5 +56,5 @@ emb.fields = [
     {"name":"Server Roles","value":info.role,"inline":true}
 ];
 emb.color = HTML2Int(colorHex[random]);
-emb.footer = {"text":"Date created : "+info.date}
+emb.footer = {"text":"Command created : "+info.date}
 resp = emb;
