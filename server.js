@@ -100,7 +100,7 @@ function commafy(inVal){
 }
 
 
-var num = Number(Params);
+var num = uC;
 var check1 = Math.ceil(num / 100);
 var check2 = Math.ceil(num / 1000);
 var check3 = Math.ceil(num / 10000);
