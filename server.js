@@ -1,19 +1,20 @@
 var info = {};
-/*==*/info.date = "Febuary 11th 2018";
 var bC = 0;
 var uC = 0;
-var i;
+var name = "";
 for (i = 0; i < Server.Members.length; i++) {
-    if (ServerMembers[i].User.Bot === false) {uC++} else {bC++}
+    if (ServerMembers[i].User.ID === ServerOwnerID) {
+	name += ServerMembers[i].User.Username+"#"+ServerMembers[i].User.Discriminator;
+    }
+
+    if (ServerMembers[i].User.Bot === false) {
+	uC++
+    } else {
+	bC++
+    }
 }
 /*==*/info.users = uC.toString();
 /*==*/info.bots = bC.toString();
-var name = "";
-for (i = 0;i < ServerMembers.length;i++) {
-  if (ServerMembers[i].User.ID === ServerOwnerID) {
-    name += ServerMembers[i].User.Username+"#"+ServerMembers[i].User.Discriminator;
-  }
-}
 /*==*/info.owner = name;
 /*==*/info.chan = ServerChannels.length.toString();
 /*==*/info.role = ServerRoles.length.toString();
@@ -55,6 +56,8 @@ emb.fields = [
     {"name":"Server Channels","value":info.chan,"inline":true},
     {"name":"Server Roles","value":info.role,"inline":true}
 ];
+var time = new Date();
+emb.timestamp = time.toISOString();
 emb.color = HTML2Int(colorHex[random]);
-emb.footer = {"text":"Command created : "+info.date}
+emb.footer = {"text":"Command requested"}
 resp = emb;
