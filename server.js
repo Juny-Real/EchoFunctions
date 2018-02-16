@@ -140,8 +140,6 @@ emb.fields = [
     {"name":"Server Channels","value":info.chan,"inline":true},
     {"name":"Server Roles","value":info.role,"inline":true}
 ];
-var time = new Date();
-emb.timestamp = time.toISOString();
 emb.color = HTML2Int(colorHex[random]);
-emb.footer = {"text":milestone}
+emb.footer = {"text":"Milestones : "+milestone}
 resp = emb;
