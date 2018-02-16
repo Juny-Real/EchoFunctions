@@ -38,6 +38,90 @@ for (i=0;i < users.length;i++) {
 /*==*/info.onlinehumans = online.toString();
 /*==*/info.onlinebots = botonline.toString();
 
+function System() {
+    this.getUnicodePackage = function(pkg) {
+        if(pkg == "opt1") { return ["░", "█"]; }
+        if(pkg == "opt2") { return ["▁", "█"]; }
+        if(pkg == "opt3") { return ["⣀", "⣿"]; }
+        if(pkg == "opt4") { return ["○", "⬤"]; }
+        if(pkg == "opt5") { return ["□", "■"]; }
+        if(pkg == "opt6") { return ["⬜", "⬛"]; }
+        if(pkg == "opt7") { return ["▱", "▰"]; }
+        if(pkg == "opt8") { return ["▭", "◼"]; }
+        if(pkg == "opt9") { return ["▯", "▮"]; }
+        if(pkg == "opt10") { return ["◯", "⬤"]; }
+        if(pkg == "opt11") { return ["⚪", "⚫"]; }
+    };
+
+    this.progressBar = function(exp, maxExp, barSize, pkg) {
+        var progress = "";
+
+        for(i = 0; i < barSize; i++) {
+            progress = progress + "░";
+        }
+
+        var char = this.getUnicodePackage(pkg);
+        progress = Replace(progress, "░", char[0]);
+
+        var percent = exp / maxExp * 100;
+        var prog = percent * progress.length;
+        var track = 0;
+    
+        for(p = 0; p < progress.length; p++) {
+            if(percent >= p / progress.length * 100) {
+                progress = TrimSuffix(progress, char[0]);
+                progress = char[1] + progress;
+            }
+        }
+        if(exp > maxExp) {
+            for(i = 0; i < barSize; i++) {
+                progress = progress + "░";
+            }
+            progress = Replace(progress, "░", char[0]);
+        }
+        return progress;
+    };
+}
+
+function commafy(inVal){
+	var returnNum;
+	if(inVal != null) {
+	   	var dat = inVal.toString();
+	   	var arrTheNumber = dat.split("").reverse();
+	   	var newNum = Array();
+	   	for(var i=0; i<arrTheNumber.length; i++){
+	        newNum[newNum.length] = ((i%3===2) && (i<arrTheNumber.length-1)) ? "," + arrTheNumber[i]: arrTheNumber[i];
+	   	}
+	   	returnNum = newNum.reverse().join("");
+	} else {
+		returnNum = inVal;
+	}
+   return returnNum;
+}
+
+
+var num = Number(Params);
+var check1 = Math.ceil(num / 100);
+var check2 = Math.ceil(num / 1000);
+var check3 = Math.ceil(num / 10000);
+var check4 = Math.ceil(num / 100000);
+var check5 = Math.ceil(num / 1000000);
+var milestone = ""
+var Bot = new System();
+if (check4 >= 2) {
+	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 1000000, 20, "opt3") + "\t1,000,000";
+} else if (check3 >= 2) {
+	milestone += commafy(num) + "\t" + Bot.progressBar(num, 100000, 20, "opt3") + "\t100,000";
+} else if (check2 >= 2) {
+	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 10000, 20, "opt3") + "\t10,000";
+} else if (check1 >= 2) {
+	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 1000, 20, "opt3") + "\t1,000";
+} else if (check1 == 1) {
+	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 100, 20, "opt3") + "\t100";
+} else {
+	throw new ReferenceError("Invalid server object!");
+}
+
 var iconUrl = 'https://cdn.discordapp.com/icons/'+Server.ID+'/'+Server.Icon+'.jpg';
 var colorHex = ["#ff0000","#00ff00","#ffffff","#4286f4","#f45642","#262525","#e2d626","#87e226","#26e2c0","#2633e2","#8126e2"];
 var random = Math.floor(Math.random() * (colorHex.length - 0 + 1) ) + 0;
@@ -59,5 +143,5 @@ emb.fields = [
 var time = new Date();
 emb.timestamp = time.toISOString();
 emb.color = HTML2Int(colorHex[random]);
-emb.footer = {"text":"Command requested"}
+emb.footer = {"text":milestone}
 resp = emb;
