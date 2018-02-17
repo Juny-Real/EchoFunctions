@@ -91,15 +91,15 @@ var check5 = Math.ceil(num / 1000000);
 var milestone = ""
 var Bot = new System();
 if (check4 >= 2) {
-	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 1000000, 20, "opt3") + "\t1,000,000";
+	milestone += "Milestones : " + commafy(num) + "\t" +  Bot.progressBar(num, 1000000, 20, "opt3") + "\t1,000,000";
 } else if (check3 >= 2) {
-	milestone += commafy(num) + "\t" + Bot.progressBar(num, 100000, 20, "opt3") + "\t100,000";
+	milestone += "Milestones : " + commafy(num) + "\t" + Bot.progressBar(num, 100000, 20, "opt3") + "\t100,000";
 } else if (check2 >= 2) {
-	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 10000, 20, "opt3") + "\t10,000";
+	milestone += "Milestones : " + commafy(num) + "\t" +  Bot.progressBar(num, 10000, 20, "opt3") + "\t10,000";
 } else if (check1 >= 2) {
-	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 1000, 20, "opt3") + "\t1,000";
+	milestone += "Milestones : " + commafy(num) + "\t" +  Bot.progressBar(num, 1000, 20, "opt3") + "\t1,000";
 } else if (check1 == 1) {
-	milestone += commafy(num) + "\t" +  Bot.progressBar(num, 100, 20, "opt3") + "\t100";
+	milestone += "Milestones : " + commafy(num) + "\t" +  Bot.progressBar(num, 100, 20, "opt3") + "\t100";
 } else {
 	throw new ReferenceError("Invalid server object!");
 }
