@@ -354,3 +354,21 @@ function unBitwise(data, type) {
         }
     }
 }
+
+
+function commafy(inVal){
+	var returnNum;
+	if(inVal != null) {
+	   	var dat = inVal.toString();
+	   	var arrTheNumber = dat.split("").reverse();
+	   	var newNum = Array();
+	   	for(var i=0; i<arrTheNumber.length; i++){
+	        newNum[newNum.length] = ((i%3===2) && (i<arrTheNumber.length-1)) ? "," + arrTheNumber[i]: arrTheNumber[i];
+	   	}
+	   	returnNum = newNum.reverse().join("");
+	} else {
+		returnNum = inVal;
+	}
+   return returnNum;
+}
+//Thanks Proxy!
