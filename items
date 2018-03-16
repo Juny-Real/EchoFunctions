@@ -1,0 +1,5 @@
+{
+  "weapons":"{\"AR\":2500,\"Handgun\":1250,\"Rifle\":5000,\"Rocket_Launcher\":50000,\"Sniper\":10000}",
+  "houses":"{\"Apartment\":5000,\"Condo\":100000,\"Mansion\":1000000,\"Ranch\":500000,\"Town_House\":10000}",
+  "vehicles":"{\"Hummer\":100000,\"Limo\":500000,\"Sports_Car\":50000,\"Town_Car\":25000}"
+}
