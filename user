@@ -1,8 +1,23 @@
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
+}
+
 function getUserID(id) {
         var id = id.toLowerCase();
         var text = [];
         for (i = 0; i < ServerMembers.length; i++) {
-            if (ServerMembers[i].User.ID === id||ServerMembers[i].User.Username.toLowerCase() === id||ServerMembers[i].User.Discriminator === id||ServerMembers[i].Nick.toLowerCase() === id) {
+            if (ServerMembers[i].User.ID === id||ServerMembers[i].User.Username.toLowerCase() === id||ServerMembers[i].User.Discriminator === id||ServerMembers[i].Nick.toLowerCase().includes(id)) {
                 text.push(ServerMembers[i].User.ID);
             }
         }
