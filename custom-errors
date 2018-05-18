@@ -1,9 +1,9 @@
 Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
       obj.proto = proto;
       return obj; 
-    }
+}
 
-    function CustomError(foo, message, fileName, lineNumber) {
+function CustomError(foo, message, fileName, lineNumber) {
       var instance = new Error(message, fileName, lineNumber);
       instance.foo = foo;
       Object.setPrototypeOf(instance, Object.getPrototypeOf(this));
@@ -11,20 +11,19 @@ Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
         Error.captureStackTrace(instance, CustomError);
       }
       return instance;
-    }
+}
 
-    CustomError.prototype = Object.create(Error.prototype, {
+CustomError.prototype = Object.create(Error.prototype, {
       constructor: {
         value: Error,
         enumerable: false,
         writable: true,
         configurable: true
       }
-    });
+});
 
-    if (Object.setPrototypeOf){
+if (Object.setPrototypeOf){
       Object.setPrototypeOf(CustomError, Error);
-    } else {
+} else {
       CustomError.proto = Error;
-    }
 }
