@@ -27,3 +27,4 @@ Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
     } else {
       CustomError.proto = Error;
     }
+}
